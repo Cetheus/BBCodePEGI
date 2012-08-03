@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/bbcodes.xsd">
+	<import>
+		<bbcode name="pegi">
+			<classname>PegiBBCode</classname>
+			<allowedchildren>none</allowedchildren>
+			<attributes>
+				<attribute name="0">
+					<required>1</required>
+					<validationpattern><![CDATA[^(3|4|6|7|12|16|18)$]]></validationpattern>
+				</attribute>
+				<attribute name="1">
+					<required>0</required>
+					<validationpattern><![CDATA[^[1-9]?[0-9]$]]></validationpattern>
+				</attribute>
+			</attributes>
+			<wysiwygicon>pegiM.png</wysiwygicon>
+		</bbcode>
+	</import>
+</data>

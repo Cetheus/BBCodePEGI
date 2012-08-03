@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package name="net.cetheus.wcf.data.message.bbcode.pegi" xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/package.xsd">
+	<packageInformation>
+		<packagename><![CDATA[BBCode: PEGI]]></packagename>
+		<packagedescription><![CDATA[This plugin adds the BBCode 'pegi'.]]></packagedescription>
+		<packagedescription language="de"><![CDATA[Dieses Plugin stellt den BBCode 'pegi' zur Verfügung.]]></packagedescription>
+		<packagedescription language="de-informal"><![CDATA[Dieses Plugin stellt den BBCode 'pegi' zur Verfügung.]]></packagedescription>
+		<packageurl><![CDATA[http://www.cetheus.net]]></packageurl>
+		<plugin>com.woltlab.wcf.data.message.bbcode</plugin>
+		<isunique>1</isunique>
+		<version>1.0.0</version>
+		<date>2011-08-16</date>
+	</packageInformation>
+
+	<authorInformation>
+		<author><![CDATA[Cetheus]]></author>
+		<authorURL><![CDATA[http://www.cetheus.net]]></authorURL>
+	</authorInformation>
+
+	<requiredPackages>
+		<!-- basics -->
+		<requiredpackage minversion="1.0.1">com.woltlab.wcf.data.message.bbcode</requiredpackage>
+	</requiredPackages>
+
+	<instructions type="install">
+		<!-- files -->
+		<files>files.tar</files>
+		
+		<!-- config -->
+		<bbcodes>bbcodes.xml</bbcodes>
+		
+		<!-- languages -->
+		<languages languagecode="de">languages/de.xml</languages>
+		<languages languagecode="de-informal">languages/de-informal.xml</languages>
+		<languages languagecode="en">languages/en.xml</languages>
+	</instructions>
+</package>
