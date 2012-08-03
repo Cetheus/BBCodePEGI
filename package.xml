@@ -8,7 +8,7 @@
 		<packageurl><![CDATA[http://www.cetheus.net]]></packageurl>
 		<plugin>com.woltlab.wcf.data.message.bbcode</plugin>
 		<isunique>1</isunique>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 		<date>2011-08-16</date>
 	</packageInformation>
 
@@ -33,5 +33,9 @@
 		<languages languagecode="de">languages/de.xml</languages>
 		<languages languagecode="de-informal">languages/de-informal.xml</languages>
 		<languages languagecode="en">languages/en.xml</languages>
+	</instructions>
+	<instructions type="update" fromversion='1.0.0'>
+		<!-- files -->
+		<files>files.tar</files>
 	</instructions>
 </package>
