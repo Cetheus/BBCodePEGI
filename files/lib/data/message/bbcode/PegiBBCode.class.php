@@ -24,37 +24,42 @@ class PegiBBCode implements BBCode {
 		$output = '';
 		
 		// get attributes
-		if (isset($openingTag['attributes'][0])) $age = $openingTag['attributes'][0];
 		if (isset($openingTag['attributes'][1])) $size = $openingTag['attributes'][1];
+		if (isset($openingTag['attributes'][0])){
+			 $age = $openingTag['attributes'][0];
 		
-		// display BBCode
-		if ($parser->getOutputType() == 'text/html') {
-			$output = '<div><img src="'.RELATIVE_WCF_DIR.'images/pegi/pegi_'.$age.'.svg" style="width: '.$size.'px;" /> '; // PEGI Age Rating		
-
-			if (isset($content)) { // PEGI Warnings
-				$pegivalues = explode(',', $content);
-				foreach ($pegivalues as $pegivalue){
-					if (file_exists(RELATIVE_WCF_DIR.'images/pegi/pegi_'.strtolower($pegivalue).'.svg')) {
-						$output = $output.'<img src="'.RELATIVE_WCF_DIR.'images/pegi/pegi_'.strtolower($pegivalue).'.svg" style="width: '.$size.'px;" /> ';
+			// display BBCode
+			if ($parser->getOutputType() == 'text/html') {
+				$output = '<div><img src="'.RELATIVE_WCF_DIR.'images/pegi/pegi_'.$age.'.svg" style="width: '.$size.'px;" /> '; // PEGI Age Rating		
+	
+				if (isset($content)) { // PEGI Warnings
+					$content = str_replace(' ', '', $content);
+					$pegivalues = explode(',', $content);
+					foreach ($pegivalues as $pegivalue){
+						if (file_exists(RELATIVE_WCF_DIR.'images/pegi/pegi_'.strtolower($pegivalue).'.svg')) {
+							$output = $output.'<img src="'.RELATIVE_WCF_DIR.'images/pegi/pegi_'.strtolower($pegivalue).'.svg" alt="PEGI: '.$pegivalue.'" style="width: '.$size.'px;" /> ';
+						}
 					}
 				}
+
+				$output = $output.'</div>';
 			}
+			else if ($parser->getOutputType() == 'text/plain') {
+				$output = 'Rated: PEGI '.$age;
 
-			$output = $output.'</div>';
-		}
-		else if ($parser->getOutputType() == 'text/plain') {
-			$output = 'Rated: PEGI '.$age;
+				if (isset($content)) { // PEGI Warnings
+					$output = $output.":\n";
+					$pegivalues = explode(',', $content);
+					foreach ($pegivalues as $pegivalue){
+						$output = $output."- ".$pegivalue."\n";
+					}
 
-			if (isset($content)) { // PEGI Warnings
-				$output = $output.":\n";
-				$pegivalues = explode(',', $content);
-				foreach ($pegivalues as $pegivalue){
-					$output = $output."- ".$pegivalue."\n";
 				}
-
 			}
+			return $output;
+		} else {
+			return "Attribut Alter nicht gesetzt.";
 		}
-		return $output;
 	}
 }
 ?>

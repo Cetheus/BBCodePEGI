@@ -1,6 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <language xmlns="http://www.woltlab.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.woltlab.com/XSD/language.xsd" languagecode="en">
 	<category name="wcf.bbcode">
-		<item name="wcf.bbcode.headline.title"><![CDATA[Insert PEGI Ratings]]></item>
+		<item name="wcf.bbcode.pegi.title"><![CDATA[Insert PEGI Ratings]]></item>
+	</category>
+	<category name="wcf.help.item">
+		<item name="wcf.help.item.message.bbcode.pegi"><![CDATA[PEGI Ratings]]></item>
+		<item name="wcf.help.item.message.bbcode.pegi.description"><![CDATA[<p>Mittels der BBCodes lassen sich PEGI (Pan European Game Information)-Logos in einen Text bzw. Beitrag einfügen. Im Nachfolgenden wird erklärt, wie dies geschieht.<br />
+Die PEGI-Logos bieten sich zur visuellen und eindeutigen Hervorhebung all jener Inhalte an, die aufgrund gesetzlicher Bestimmungen eine eindeutige Kennzeichnung besitzen müssen. Mit ihnen lässt sich also bspw. zeigen, ob ein Computerspiel auch von einem 16-jährigen Spieler gespielt werden darf oder dieser 18 Jahre alt sein muss.</p> 
+<p>Diese sind SVG-Dateien, die aufgrund ihrer Beschaffenheit nach eigenem Belieben skaliert werden können. Dabei entstehen keinerlei optische und/oder qualitative Unterschiede und die Nutzung bzw. Bearbeitung ist sehr einfach zu bewerkstelligen.</p> 
+
+<p>Mit der Angabe von <code>$alter</code> lässt sich eine der sieben definierten Altersangaben wählen. Diese wären: 3, 4, 6, 7, 12, 16 oder 18 Jahre.</p> 
+
+<p>Durch Verwendung von <code>$größe</code> lässt sich der gewünschte Pixelwert einstellen. Dieser kann in einem Rahmen von 10-999 Pixel(n) liegen. Als Beispiel sieht man hier die Darstellung in der Größe 128px:<br />
+<img style="width: 128px;" src="wcf/images/pegi/pegi_6.svg"></p>
+
+<p>Wird kein spezifischer Wert eingestellt, wird automatisch der standardisierte Wert von 64x64 Pixeln genommen und angezeigt. Dies sieht wie folgt aus:<br />
+<img style="width: 64px;" src="wcf/images/pegi/pegi_6.svg"></p>
+
+<h4 style="clear: left; padding-top: 20px;">Die Syntax - Grundaufbau</h4>
+<p>Die grundlegende Syntax des PEGI-BBCodes ist wie folgt zusammengestellt:<br />
+<code>[pegi(='$alter')(,'$größe')]$alter[/pegi]</code><br />
+
+Die Eigenschaft $alter innerhalb des BBCodes ist verpflichtend. Wird kein Alter angegeben, wird der BBCode nicht ausgeführt.<br />
+Es gibt zwei Möglichkeiten, das Alter zu definieren:<br />
+<code>[pegi]$alter[/pegi]</code><br />
+oder
+<code>[pegi='$alter'][/pegi]</code><br /><br />
+
+Wenn man zusätzlich eine Größe definieren will, muss immer die 2. Schreibweise gewählt werden:<br />
+<code>[pegi='$alter','$größe'][/pegi]</code><br /><br />
+
+Im Gegensatz zu der USK Bewertung gibt es bei der PEGI Bewertung noch die Möglichkeit eine Inhaltsbeurteilung anzugeben.<br />
+Diese soll zusätzlichen vor Gefahren des Titels warnen.<br />
+<table style="border:none" summary="Pegi Inhaltsbeurteilungen">
+	<thead class="containerHead" >
+		<tr>
+			<th>Icon</th>
+			<th>Erklärung</th>
+			<th>Codewort</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><img style="width: 64px;" src="wcf/images/pegi/pegi_badlanguage.svg"></td>
+			<td><b>Schimpfwörter</b>:<br />
+				Das Spiel enthält vulgäre Sprache (bei PEGI12: Kraftworte, Flüche, Beleidigungen, bei PEGI16/18: Blasphemie, sexuelle Kraftworte)</td>
+			<td>badlanguage</td>
+		</tr>
+		<tr>
+			<td><img style="width: 64px;" src="wcf/images/pegi/pegi_discrimination.svg"></td>
+			<td><b>Diskriminierung</b>:<br />
+				Darstellung von Diskriminierung oder Elemente, die als Aufforderung zu Diskriminierung verstanden werden können (bei PEGI18)</td>
+			<td>discrimination</td>
+		</tr>
+		<tr>
+			<td><img style="width: 64px;" src="wcf/images/pegi/pegi_drugs.svg"></td>
+			<td><b>Drogen</b>:<br />
+				Darstellung von oder Bezugnahme auf Drogenkonsum (inklusive "magischer Tränke" etwa in Rollenspielen) (bei Pegi16: Tabak und Alkohol, bei PEGI18: illegale Drogen</td>
+			<td>drugs</td>
+		</tr>
+		<tr>
+			<td><img style="width: 64px;" src="wcf/images/pegi/pegi_fear.svg"></td>
+			<td><b>Angst</b>:<br />
+				Spielinhalt könnte verängstigend auf Kinder wirken (bei PEGI7)</td>
+			<td>fear</td>
+		</tr>
+		<tr>
+			<td><img style="width: 64px;" src="wcf/images/pegi/pegi_gambling.svg"></td>
+			<td><b>Glücksspiel</b>:<br />
+				Das Spiel enthält Glücksspielelemente oder ermuntert zum Glücksspiel (ab PEGI12)</td>
+			<td>gambling</td>
+		</tr>
+		<tr>
+			<td><img style="width: 64px;" src="wcf/images/pegi/pegi_online.svg"></td>
+			<td><b>Online</b>:<br />
+				Das Spiel enthält Online-Inhalte</td>
+			<td>online</td>
+		</tr>
+		<tr>
+			<td><img style="width: 64px;" src="wcf/images/pegi/pegi_sex.svg"></td>
+			<td><b>Sex/Nacktheit</b>:<br />
+				Nacktheit oder sexuelle Handlungen (bzw. Anspielungen darauf) werden gezeigt (bei PEGI12: Wörter oder Taten mit sexuellen Anspielungen, bei PEGI16: erotische Darstellungen und Nacktheit mit sexuellem Bezug, bei PEGI18: Sexdearstellungen)</td>
+			<td>sex</td>
+		</tr>
+		<tr>
+			<td><img style="width: 64px;" src="wcf/images/pegi/pegi_violence.svg"></td>
+			<td><b>Gewalt</b>:<br />
+				Enthält Gewaltdarstellungen (bei PEGI7: nichtrealistische Gewaltdarstellungen, bei PEGI12: Gewalt in einer Fanatasy Umgebung, bei PEGI16/18: realistische Gewaltdarstellung)</td>
+			<td>violence</td>
+		</tr>
+	</tbody>
+</table><br /><br />
+
+Um zustäzlich zur Altersbewertung die Inhaltsberwertung anzugeben, müssen dem BBCode die Codewörter aus der Tabelle oben mit einem Komma getrennt angegeben werden.<br />
+Der Code für ein Spiel ab 16 mit online Mulitplayer, Drogen und Gewalt sieht wie folgt aus:<br />
+<code>[pegi='16']drugs,online,violence[/pegi]</code><br />
+<img style="width: 64px;" src="wcf/images/pegi/pegi_16.svg">
+<img src="wcf/images/pegi/pegi_drugs.svg" alt="PEGI: drugs" style="width: 64px;" />
+<img src="wcf/images/pegi/pegi_online.svg" alt="PEGI: online" style="width: 64px;" />
+<img src="wcf/images/pegi/pegi_violence.svg" alt="PEGI: violence" style="width: 64px;" /><br /><br />
+
+Es ist wichtig zu beachten, dass bei der Angabe von zustätzlichen Inhaltsbewertungen, das alter als Attribut ([PEGI=16]...) übergeben werden muss.</p>
+
+<h4 style="clear: left; padding-top: 20px;">Beispiele:</h4>
+<p><code>[pegi]3[/pegi]</code><br />
+<img style="width: 64px;" src="wcf/images/pegi/pegi_3.svg"><br /><br />
+
+<code>[pegi='3'][/pegi]</code><br />
+<img style="width: 64px;" src="wcf/images/pegi/pegi_3.svg"><br /><br />
+
+<code>[pegi='3','128'][/pegi]</code><br />
+<img style="width: 128px;" src="wcf/images/pegi/pegi_3.svg"><br /><br />
+
+<code>[pegi='16']drugs,online,violence[/pegi]</code><br />
+<img style="width: 64px;" src="wcf/images/pegi/pegi_16.svg">
+<img src="wcf/images/pegi/pegi_drugs.svg" alt="PEGI: drugs" style="width: 64px;" />
+<img src="wcf/images/pegi/pegi_online.svg" alt="PEGI: online" style="width: 64px;" />
+<img src="wcf/images/pegi/pegi_violence.svg" alt="PEGI: violence" style="width: 64px;" />
+</p>
+]]></item>
 	</category>
 </language>
